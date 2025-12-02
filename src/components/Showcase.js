@@ -28,7 +28,6 @@ import BackgroundImg from '../assets/emoji.png';
 import { fadeInLeftVariant, fadeInRightVariant } from '../utils/Variants';
 
 import { SmallImage } from '../styles/Global.styled';
-import { MdOutlineFiberManualRecord } from 'react-icons/md';
 
 const Showcase = () => {
   return (
