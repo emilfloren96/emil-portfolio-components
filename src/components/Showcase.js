@@ -41,10 +41,45 @@ const Showcase = () => {
         responsiveRight="1rem"
         responsiveTop="8rem"
     >
+
         <FlexContainer align="center" fullWidthChild>
-            {/* --left content-- */}
-            <motion.div
+                    {/* --left content-- */}
+            <FlexContainer
+                as={motion.div}
                 variants={fadeInLeftVariant}
+                initial="hidden"
+                whileInView="visible"
+                justify="flex-end"
+            >
+                <ShowcaseParticleContainer>
+                    <ShowcaseImageCard>
+                        <SmallImage src={ShowcaseImg}  alt="showcase" />
+                    </ShowcaseImageCard>
+
+                    <Particle 
+                        as={motion.img}
+                        animate={{
+                            x: [0, 100, 0],
+                            rotate: 360,
+                            scale: [1, 0.5, 1],
+                        }}
+                        transition={{
+                            duration: 20,
+                            repeat: Infinity,
+                        }}
+                        src={BackgroundImg}
+                        alt="particle"
+                        top="-80px"
+                        left="20px"
+                        height="50px"
+                        rotate="0deg"
+                    />
+                </ShowcaseParticleContainer>
+            </FlexContainer>
+
+            {/* --right content-- */}
+            <motion.div
+                variants={fadeInRightVariant}
                 initial="hidden"
                 whileInView="visible"
             >
@@ -109,39 +144,6 @@ const Showcase = () => {
                 </FlexContainer>
             </motion.div>
 
-            {/* --right content-- */}
-            <FlexContainer
-                as={motion.div}
-                variants={fadeInRightVariant}
-                initial="hidden"
-                whileInView="visible"
-                justify="flex-end"
-            >
-                <ShowcaseParticleContainer>
-                    <ShowcaseImageCard>
-                        <SmallImage src={ShowcaseImg}  alt="showcase" />
-                    </ShowcaseImageCard>
-
-                    <Particle 
-                        as={motion.img}
-                        animate={{
-                            x: [0, 100, 0],
-                            rotate: 360,
-                            scale: [1, 0.5, 1],
-                        }}
-                        transition={{
-                            duration: 20,
-                            repeat: Infinity,
-                        }}
-                        src={BackgroundImg}
-                        alt="particle"
-                        top="-80px"
-                        left="20px"
-                        height="50px"
-                        rotate="0deg"
-                    />
-                </ShowcaseParticleContainer>
-            </FlexContainer>
         </FlexContainer>
     </PaddingContainer>
   )

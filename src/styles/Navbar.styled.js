@@ -14,6 +14,10 @@ export const Logo = styled.p`
     font-size: 1.7rem;
     font-weight: ${({ theme }) => theme.fonts.weight.medium};
     color: white;
+
+    @media(max-width: ${({ theme }) => theme.breakpoints.mobile}){
+        font-size: 1.2rem;
+    }
 `
 
 export const MenuIcon = styled.a`
