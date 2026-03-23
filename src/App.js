@@ -10,12 +10,14 @@ import MySkills from "./components/MySkills";
 import MyProjects from "./components/MyProjects";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import ScrollProgress from "./components/ScrollProgress";
 
 
 function App() {
   return (
       <ThemeProvider theme={theme}>
         <MainBody>
+          <ScrollProgress />
           <Navbar />
           <Container>
             <Showcase />

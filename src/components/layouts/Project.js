@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 
 //import global style
@@ -23,6 +23,17 @@ import { FaGithub } from 'react-icons/fa';
 import { fadeInLeftVariant, fadeInRightVariant } from '../../utils/Variants';
 
 const Project = ({ data }) => {
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+    const y = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+    setTilt({ rotateX: -x * 8, rotateY: y * 8 });
+  };
+
+  const handleMouseLeave = () => setTilt({ rotateX: 0, rotateY: 0 });
+
   return (
     <FlexContainer
         direction={data.reverse ? 'row-reverse' : false} 
@@ -70,10 +81,18 @@ const Project = ({ data }) => {
             whileInView="visible"
             justify={data.reverse ? "flex-start" : "flex-end"}
         >
-            <ProjectImage 
-                src={data.project_img} 
-                alt={data.project_name} 
-            />
+            <motion.div
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                animate={tilt}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                style={{ perspective: '1000px' }}
+            >
+                <ProjectImage
+                    src={data.project_img}
+                    alt={data.project_name}
+                />
+            </motion.div>
         </ProjectImageContainer>
     </FlexContainer>
   )
